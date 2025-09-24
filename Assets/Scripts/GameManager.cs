@@ -21,22 +21,22 @@ public class GameManager : MonoBehaviour
         PlayerPointsText.text = "ОчкиИгрок: " + PlayerPoints;
     }
 
-    public void AddOnePointAI()
+    public void AddOnePoint()
     {
         PlayerPoints = AIPoints + 1;
         AIPointsText.text = "ОчкиAI: " + AIPoints;
     }
 
-    public void SubtractOnePoint()
+    public void SubtractOnePointAI()
     {
         AIPoints = AIPoints - 1;
-        AIPointsText.text = "ОчкиИгрок: " + AIPoints;
+        AIPointsText.text = "ОчкиAI: " + AIPoints;
     }
 
     public void SubtractOnePoint()
     {
-        AIPoints = AIPoints - 1;
-        PlayerPointsText.text = "ОчкиAI: " + AIPoints;
+        PlayerPoints = PlayerPoints - 1;
+        PlayerPointsText.text = "ОчкиИгрок: " + PlayerPoints;
     }
 
     public void SelectRock()
