@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public int PlayerSelectedValue;
 
+    public Choices playerChoice;
+
     public void AddOnePoint()
     {
         PlayerPoints = PlayerPoints + 1;
@@ -40,65 +42,55 @@ public class GameManager : MonoBehaviour
         PlayerPointsText.text = "ОчкиИгрок: " + PlayerPoints;
     }
 
+    // 0-0 1-1 2-2 - Ничья
+    // 0-1 = -1 Проиграли 
+    // 1-2 = -1 Проиграли
+    // 2-0 = 2 Проиграли
+    
+    //1-0 = 1 Выиграли
+    //2-1 = 1 Выиграли
+    //0-2 = -2 Выиграли
     public void SelectRock()
     {
-        PlayerSelectedValue = 0;
-        int aiSelectedValue = UnityEngine.Random.Range(0, 3);
-        if (aiSelectedValue == 0)
-        {
-            Debug.Log("ничья");
-        }
-        else if (aiSelectedValue == 1)
-        {
-            Debug.Log("ПК выйграл");
-            SubtractOnePoint();
-        }
-        else if (aiSelectedValue == 2)
-        {
-            Debug.Log("мы выиграли");
-            AddOnePoint();
-        }
+        playerChoice = Choices.Rock;
+        CheckWin((int)playerChoice);
     }
 
     public void SelectPaper()
     {
-        PlayerSelectedValue = 1;
-        
-        int aiSelectedValue = UnityEngine.Random.Range(0, 3);
-        if (aiSelectedValue == 1)
-        {
-            Debug.Log("ничья");
-        } 
-        else if (aiSelectedValue == 2)
-        {
-            Debug.Log("ПК выйграл");
-            SubtractOnePoint();
-        } 
-        else if (aiSelectedValue == 0)
-        {
-            Debug.Log("мы выиграли");
-            AddOnePoint();
-        } 
+        CheckWin(1);
     }
 
     public void SelectScissors()
     {
-        PlayerSelectedValue = 2;
-        
+        CheckWin(2);
+    }
+
+    private void CheckWin(int playerSelected)
+    {
         int aiSelectedValue = UnityEngine.Random.Range(0, 3);
-        if (aiSelectedValue == 2)
+        int delta = playerSelected - aiSelectedValue;
+        
+        if (delta == 0)
         {
             Debug.Log("ничья");
         } 
-        else if (aiSelectedValue == 0)
+        else if (delta == -1 || delta == 2)
         {
-            Debug.Log("ПК выйграл");
+            Debug.Log("ПК выиграл");
             SubtractOnePoint();
         } 
-        else if (aiSelectedValue == 1)
+        else if (delta == 1 || delta == -2)
         {
-            Debug.Log("мы выиграли");
+            Debug.Log("Мы выиграли");
             AddOnePoint();
         } 
     }
+}
+
+public enum Choices
+{
+    Rock = 0,
+    Paper = 1,
+    Scissors = 2
 }
