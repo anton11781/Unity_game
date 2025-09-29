@@ -9,9 +9,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI PlayerPointsText;
-    public TextMeshProUGUI AIPointsText;
+  //  public TextMeshProUGUI AIPointsText;
     public int PlayerPoints;
-    public int AIPoints;
+ //   public int AIPoints;
 
     public int PlayerSelectedValue;
 
@@ -20,19 +20,20 @@ public class GameManager : MonoBehaviour
         PlayerPoints = PlayerPoints + 1;
         PlayerPointsText.text = "ОчкиИгрок: " + PlayerPoints;
     }
-
-    public void AddOnePoint()
+/*
+    public void AddOnePointAI()
     {
-        PlayerPoints = AIPoints + 1;
+        AIPoints = AIPoints + 1;
         AIPointsText.text = "ОчкиAI: " + AIPoints;
     }
-
+*/
+/*
     public void SubtractOnePointAI()
     {
-        AIPoints = AIPoints - 1;
-        AIPointsText.text = "ОчкиAI: " + AIPoints;
+        PlayerPoints = AIPoints - 1;
+        PlayerPointsText.text = "ОчкиAI: " + PlayerPoints;
     }
-
+*/
     public void SubtractOnePoint()
     {
         PlayerPoints = PlayerPoints - 1;
